@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Controle de Finanças</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Controle de Finanças</h1>
+    <nav>
+      <a href="index.html">Início</a>
+      <a href="cadastro.html">Cadastrar Gasto</a>
+      <a href="cadastro_renda.html">Cadastrar Renda</a>
+      <a href="listagem.html">Gastos</a>
+      <a href="graficos.html">Gráfico</a>
+    </nav>
+  </header>
+  <main>
+    <div class="grafico-container">
+      <div>
+        <h2>Gastos por Categoria</h2>
+        <canvas id="graficoCategorias" width="400" height="400"></canvas>
+      </div>
+
+      <div>
+        <h2>Comparativo: Renda x Gastos</h2>
+        <canvas id="graficoComparativo" width="400" height="400"></canvas>
+      </div>
+    </div>
+  </main>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>

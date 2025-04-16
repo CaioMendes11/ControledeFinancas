@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Controle de Finanças</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Lista de Gastos</h1>
+    <nav>
+      <a href="index.html">Início</a>
+      <a href="cadastro.html">Cadastrar Gasto</a>
+      <a href="cadastro_renda.html">Cadastrar Renda</a>
+      <a href="listagem.html">Gastos</a>
+      <a href="graficos.html">Gráfico</a>
+    </nav>
+  </header>
+  <main>
+    <table id="tabelaGastos">
+      <thead>
+        <tr>
+          <th>Descrição</th>
+          <th>Valor</th>
+          <th>Data</th>
+          <th>Categoria</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </main>
+  <script>
+    let gastos = JSON.parse(localStorage.getItem("gastos")) || [];
+
+    function carregarGastos() {
+      const tbody = document.querySelector("#tabelaGastos tbody");
+      tbody.innerHTML = "";
+
+    function formatarData(dataISO) {
+    const [ano, mes, dia] = dataISO.split("-");
+    return `${dia}/${mes}/${ano}`;}
+
+
+      gastos.forEach((gasto, index) => {
+        const tr = document.createElement("tr");
+
+        tr.innerHTML = `
+          <td>${gasto.descricao}</td>
+          <td>R$ ${gasto.valor.toFixed(2)}</td>
+          <td>${formatarData(gasto.data)}</td>
+          <td>${gasto.categoria}</td>
+          <td><button class="excluir" onclick="excluirGasto(${index})">Excluir</button></td>
+        `;
+
+        tbody.appendChild(tr);
+      });
+    }
+
+    function excluirGasto(index) {
+      if (confirm("Tem certeza que deseja excluir este gasto?")) {
+        gastos.splice(index, 1);
+        localStorage.setItem("gastos", JSON.stringify(gastos));
+        carregarGastos();
+      }
+    }
+
+    carregarGastos();
+  </script>
+</body>
+</html>
