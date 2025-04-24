@@ -132,10 +132,3 @@ input, select, button {
   border-radius: 8px;
   font-size: 1rem;
 }
-
-@media (max-width: 600px) {
-  nav a {
-    display: block;
-    margin: 0.5rem 0;
-  }
-}
